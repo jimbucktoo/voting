@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Voting DApp</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>🗳️ Voting DApp</h1>
+
+    <div id="wallet">
+      <button onclick="connectWallet()">Connect Wallet</button>
+      <p id="walletAddress"></p>
+    </div>
+
+    <div id="candidates"></div>
+
+    <div id="voteSection">
+      <input type="number" id="candidateId" placeholder="Enter Candidate ID" />
+      <button onclick="vote()">Vote</button>
+      <p id="voteMessage"></p>
+    </div>
+
+    <div id="adminSection">
+      <h2>🧑‍⚖️ Admin: Add New Candidate</h2>
+      <input type="text" id="newCandidateName" placeholder="Candidate Name" />
+      <button onclick="addCandidate()">Add Candidate</button>
+      <p id="adminMessage"></p>
+    </div>
+
+    <div id="votingControl">
+      <h2>🕹️ Admin: Control Voting</h2>
+      <button onclick="startVoting()">Start Voting</button>
+      <button onclick="stopVoting()">Stop Voting</button>
+      <p id="votingStatusMessage"></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
