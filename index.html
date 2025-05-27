@@ -2,39 +2,155 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Voting DApp</title>
+    <title>Voting</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <h1>🗳️ Voting DApp</h1>
+  <body class="container py-4">
+    <br />
+    <h1 class="text-center text-dark mb-4">🗳️ Decentralized Voting App</h1>
 
-    <div id="wallet">
-      <button onclick="connectWallet()">Connect Wallet</button>
-      <p id="walletAddress"></p>
+    <div id="wallet" class="mb-4 text-center">
+      <button
+        id="connectWalletBtn"
+        class="btn btn-primary"
+        onclick="connectWallet()"
+      >
+        Connect Wallet
+      </button>
+      <p id="walletAddress" class="mt-2"></p>
     </div>
 
-    <div id="candidates"></div>
+    <div id="candidates" class="mb-4"></div>
 
-    <div id="voteSection">
-      <input type="number" id="candidateId" placeholder="Enter Candidate ID" />
-      <button onclick="vote()">Vote</button>
-      <p id="voteMessage"></p>
+    <div id="voteSection" class="mb-4" style="display: none">
+      <div class="input-group mb-2">
+        <input
+          type="number"
+          id="candidateId"
+          class="form-control"
+          placeholder="Candidate ID"
+        />
+        <button id="voteBtn" class="btn btn-primary" onclick="vote()">
+          Vote
+        </button>
+      </div>
+      <p id="voteMessage" class="mt-2"></p>
+      <p id="voteLoadingText" class="text-muted" style="display: none">
+        Submitting Your Vote...
+      </p>
+      <div class="d-flex justify-content-center">
+        <div
+          id="voteSpinner"
+          class="spinner-border text-primary"
+          style="display: none"
+          role="status"
+        ></div>
+      </div>
     </div>
 
-    <div id="adminSection">
-      <h2>🧑‍⚖️ Admin: Add New Candidate</h2>
-      <input type="text" id="newCandidateName" placeholder="Candidate Name" />
-      <button onclick="addCandidate()">Add Candidate</button>
-      <p id="adminMessage"></p>
+    <div id="adminSection" style="display: none">
+      <h3 class="text-dark mb-3">⚙️ Admin Controls</h3>
+
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          id="newCandidateName"
+          class="form-control"
+          placeholder="Candidate Name"
+        />
+        <button
+          id="addCandidateBtn"
+          class="btn btn-primary"
+          onclick="addCandidate()"
+        >
+          Add Candidate
+        </button>
+      </div>
+      <p id="adminMessage" class="mt-2"></p>
+      <p id="adminLoadingText" class="text-muted" style="display: none">
+        Adding Candidate...
+      </p>
+      <div class="d-flex justify-content-center">
+        <div
+          id="adminSpinner"
+          class="spinner-border text-primary"
+          style="display: none"
+          role="status"
+        ></div>
+      </div>
+
+      <div class="input-group mb-3 mt-4">
+        <input
+          type="number"
+          id="removeCandidateId"
+          class="form-control"
+          placeholder="Candidate ID"
+        />
+        <button
+          id="removeCandidateBtn"
+          class="btn btn-danger"
+          onclick="removeCandidate()"
+        >
+          Remove Candidate
+        </button>
+      </div>
+      <p id="removeMessage" class="mt-2"></p>
+      <p id="removeLoadingText" class="text-muted" style="display: none">
+        Removing Candidate...
+      </p>
+      <div class="d-flex justify-content-center">
+        <div
+          id="removeSpinner"
+          class="spinner-border text-primary"
+          style="display: none"
+          role="status"
+        ></div>
+      </div>
     </div>
 
-    <div id="votingControl">
-      <h2>🕹️ Admin: Control Voting</h2>
-      <button onclick="startVoting()">Start Voting</button>
-      <button onclick="stopVoting()">Stop Voting</button>
+    <div id="votingControl" style="display: none" class="mt-5">
+      <h3 class="text-dark mb-3">🕹️ Voting Controls</h3>
+      <div class="d-flex flex-wrap gap-3 mb-2">
+        <button
+          id="startVotingBtn"
+          class="btn btn-success"
+          onclick="startVoting()"
+        >
+          Start Voting
+        </button>
+        <button
+          id="stopVotingBtn"
+          class="btn btn-danger"
+          onclick="stopVoting()"
+        >
+          Stop Voting
+        </button>
+      </div>
       <p id="votingStatusMessage"></p>
+      <p id="votingLoadingText" class="text-muted" style="display: none">
+        Processing Voting Request...
+      </p>
+      <div class="d-flex justify-content-center">
+        <div
+          id="votingSpinner"
+          class="spinner-border text-primary"
+          style="display: none"
+          role="status"
+        ></div>
+      </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
     <script src="app.js"></script>
   </body>
